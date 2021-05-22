@@ -1,7 +1,6 @@
 import 'package:first_project/models/catalog.dart';
 import 'package:first_project/widgets/home_widgets/catalog_header.dart';
 import 'package:first_project/widgets/home_widgets/catalog_list.dart';
-import 'package:first_project/widgets/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
