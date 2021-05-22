@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
       //backgroundColor: MyTheme.cremColor,
       body: SafeArea(
         child: Container(
-          padding: Vx.m24,
+          //padding: Vx.m24,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -54,10 +54,10 @@ class _HomePageState extends State<HomePage> {
               if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
                 CatalogList().pOnly(top: 16).expand()
               else
-                CircularProgressIndicator().centered().expand(),
+                CircularProgressIndicator().centered().expand()
             ],
           ),
-        ),
+        ).pOnly(top: 24, right: 16, left: 16),
       ),
     );
   }
