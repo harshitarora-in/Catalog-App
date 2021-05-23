@@ -1,3 +1,5 @@
+import 'package:first_project/core/store.dart';
+import 'package:first_project/models/cart.dart';
 import 'package:first_project/models/catalog.dart';
 import 'package:first_project/widgets/home_widgets/catalog_header.dart';
 import 'package:first_project/widgets/home_widgets/catalog_list.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:first_project/utils/routes.dart';
+// import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,6 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final String name = "Harshit";
+  final url = "";
   @override
   void initState() {
     super.initState();
@@ -34,15 +38,27 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _cart = (VxState.store as MyStore).cart;
     return Scaffold(
       backgroundColor: context.canvasColor,
-      floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.pushNamed(context, Myroutes.cartRoute),
-          backgroundColor: context.theme.buttonColor,
-          child: Icon(
-            CupertinoIcons.cart,
-            color: Colors.white,
-          )),
+      floatingActionButton: VxBuilder(
+        mutations: {AddMutation, RemoveMutation},
+        builder: (context, _) => FloatingActionButton(
+                onPressed: () => Navigator.pushNamed(context, Myroutes.cartRoute),
+                backgroundColor: context.theme.buttonColor,
+                child: Icon(
+                  CupertinoIcons.cart,
+                  color: Colors.white,
+                ))
+            .badge(
+                color: Vx.red500,
+                size: 18,
+                count: _cart.items.length,
+                textStyle: TextStyle(
+                    fontSize: 10,
+                    color: Vx.white,
+                    fontWeight: FontWeight.w500)),
+      ),
       //backgroundColor: MyTheme.cremColor,
       body: SafeArea(
         child: Container(
